@@ -1,4 +1,7 @@
 using Lpl.Compliance.Api.Services;
+using Lpl.Compliance.Api.Data;
+using Lpl.Compliance.Api.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +20,11 @@ builder.Services.AddCors(options =>
     });
 });
 
+
+builder.Services.AddDbContext<ComplianceDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("ComplianceDb")));
+
+builder.Services.AddScoped<IComplianceCaseRepository, ComplianceCaseRepository>();
 builder.Services.AddScoped<ComplianceCaseService>();
 
 var app = builder.Build();

@@ -1,0 +1,48 @@
+name: LPL Compliance Portal CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  backend-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup .NET 9
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x'
+
+      - name: Restore .NET solution
+        run: dotnet restore LplCompliancePortal.sln
+
+      - name: Build .NET solution
+        run: dotnet build LplCompliancePortal.sln --configuration Release --no-restore
+
+  frontend-build:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: lpl-compliance-ui
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install Angular dependencies
+        run: npm ci
+
+      - name: Build Angular app
+        run: npm run build

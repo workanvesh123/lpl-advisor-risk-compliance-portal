@@ -16,28 +16,28 @@ public class CasesController : ControllerBase
     }
 
     [HttpGet("dashboard")]
-    public IActionResult GetDashboard()
+    public async Task<IActionResult> GetDashboard()
     {
-        return Ok(_service.GetDashboard());
+        return Ok(await _service.GetDashboardAsync());
     }
 
     [HttpGet]
-    public IActionResult GetCases(string? search, string? status, int pageNumber = 1, int pageSize = 10)
+    public async Task<IActionResult> GetCases(string? search, string? status, int pageNumber = 1, int pageSize = 10)
     {
-        return Ok(_service.GetCases(search, status, pageNumber, pageSize));
+        return Ok(await _service.GetCasesAsync(search, status, pageNumber, pageSize));
     }
 
     [HttpGet("{id:int}")]
-    public IActionResult GetCaseById(int id)
+    public async Task<IActionResult> GetCaseById(int id)
     {
-        var item = _service.GetById(id);
+        var item = await _service.GetByIdAsync(id);
         return item is null ? NotFound() : Ok(item);
     }
 
     [HttpPut("{id:int}/status")]
-    public IActionResult UpdateStatus(int id, UpdateStatusRequest request)
+    public async Task<IActionResult> UpdateStatus(int id, UpdateStatusRequest request)
     {
-        var item = _service.UpdateStatus(id, request.Status);
+        var item = await _service.UpdateStatusAsync(id, request.Status);
         return item is null ? NotFound() : Ok(item);
     }
 }
