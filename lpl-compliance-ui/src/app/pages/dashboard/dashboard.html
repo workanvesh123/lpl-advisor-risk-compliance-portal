@@ -1,0 +1,14 @@
+<div class="page">
+  <h1>Risk & Compliance Dashboard</h1>
+
+  <div class="cards" *ngIf="dashboard">
+    <div class="card">Total Cases <strong>{{dashboard.totalCases}}</strong></div>
+    <div class="card">New <strong>{{dashboard.newCases}}</strong></div>
+    <div class="card">In Review <strong>{{dashboard.inReview}}</strong></div>
+    <div class="card">Pending Docs <strong>{{dashboard.pendingDocuments}}</strong></div>
+    <div class="card">Approved <strong>{{dashboard.approved}}</strong></div>
+    <div class="card high">High Risk <strong>{{dashboard.highRisk}}</strong></div>
+  </div>
+
+  <button routerLink="/cases">View Compliance Cases</button>
+</div>

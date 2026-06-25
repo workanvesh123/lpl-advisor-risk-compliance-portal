@@ -1,0 +1,65 @@
+<div class="page">
+
+    <h1>Compliance Cases</h1>
+
+    <input
+        [(ngModel)]="search"
+        placeholder="Search advisor or client">
+
+    <button (click)="loadCases()">
+        Search
+    </button>
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th>ID</th>
+
+                <th>Advisor</th>
+
+                <th>Client</th>
+
+                <th>Risk</th>
+
+                <th>Status</th>
+
+                <th></th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            <tr *ngFor="let item of cases">
+
+                <td>{{item.id}}</td>
+
+                <td>{{item.advisorName}}</td>
+
+                <td>{{item.clientName}}</td>
+
+                <td>{{item.riskScore}}</td>
+
+                <td>{{item.status}}</td>
+
+                <td>
+
+                    <a [routerLink]="['/cases',item.id]">
+
+                        View
+
+                    </a>
+
+                </td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+</div>

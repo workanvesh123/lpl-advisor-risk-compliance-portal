@@ -1,0 +1,6 @@
+@Lpl.Auth.Api_HostAddress = http://localhost:5141
+
+GET {{Lpl.Auth.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -1,0 +1,23 @@
+<div class="page" *ngIf="caseItem">
+
+  <a routerLink="/cases">← Back to Cases</a>
+
+  <h1>Compliance Case #{{caseItem.id}}</h1>
+
+  <div class="card">
+    <p><strong>Advisor:</strong> {{caseItem.advisorName}}</p>
+    <p><strong>Client:</strong> {{caseItem.clientName}}</p>
+    <p><strong>Risk Score:</strong> {{caseItem.riskScore}}</p>
+    <p><strong>Status:</strong> {{caseItem.status}}</p>
+    <p><strong>Created:</strong> {{caseItem.createdDate | date}}</p>
+  </div>
+
+  <h2>Workflow Actions</h2>
+
+  <button
+    *ngFor="let status of statuses"
+    (click)="updateStatus(status)">
+    {{status}}
+  </button>
+
+</div>
